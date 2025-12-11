@@ -1,0 +1,62 @@
+diff --git a/django/utils/autoreload.py b/django/utils/autoreload.py
+index 7ca0d68fae..4486f2d92b 100644
+--- a/django/utils/autoreload.py
++++ b/django/utils/autoreload.py
+@@ -236,6 +236,27 @@ class BaseReloader:
+         logger.debug('Watching file %s.', path)
+         self.extra_files.add(path)
+ 
++    def add_manage_py(self):
++        """Add manage.py to the watch list if it exists in the current directory."""
++        manage_py_path = Path(os.getcwd()) / 'manage.py'
++        if manage_py_path.exists():
++            self.watch_file(manage_py_path)
++
++    def watched_files(self, include_globs=True):
++        """
++        Yield all files that need to be watched, including module files and
++        files within globs.
++        """
++        # Add manage.py to watch list
++        self.add_manage_py()
++
++        yield from iter_all_python_module_files()
++        yield from self.extra_files
++        if include_globs:
++            for directory, patterns in self.directory_globs.items():
++                for pattern in patterns:
++                    yield from directory.glob(pattern)
++
+     def watched_files(self, include_globs=True):
+         """
+         Yield all files that need to be watched, including module files and
+diff --git a/manage.py b/manage.py
+new file mode 100644
+index 0000000000..82f8b730a1
+--- /dev/null
++++ b/manage.py
+@@ -0,0 +1,7 @@
++import time
++import os
++
++if __name__ == '__main__':
++    print('Starting server...')
++    while True:
++        time.sleep(1)
+diff --git a/test_autoreload_manage_py.py b/test_autoreload_manage_py.py
+new file mode 100644
+index 0000000000..41fe4313f6
+--- /dev/null
++++ b/test_autoreload_manage_py.py
+@@ -0,0 +1,11 @@
++import time
++from pathlib import Path
++from django.utils.autoreload import StatReloader
++
++reloader = StatReloader()
++manage_py_path = str(Path('manage.py').absolute())
++reloader.watch_file(manage_py_path)
++
++print('Watching files...')
++for _ in reloader.tick():
++    pass

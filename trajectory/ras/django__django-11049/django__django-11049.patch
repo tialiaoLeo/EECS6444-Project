@@ -1,0 +1,20 @@
+diff --git a/django/forms/fields.py b/django/forms/fields.py
+index a977256525..54ce4cf9b8 100644
+--- a/django/forms/fields.py
++++ b/django/forms/fields.py
+@@ -468,7 +468,14 @@ class DateTimeField(BaseTemporalField):
+ 
+ class DurationField(Field):
+     default_error_messages = {
+-        'invalid': _('Enter a valid duration.'),
++        'invalid': _(
++            'Enter a valid duration. The format is [DD] [[HH:]MM:]ss[.uuuuuu].'
++        ),
++    }
++    default_help_text = _(
++        'Duration in the format [DD] [[HH:]MM:]ss[.uuuuuu]. Seconds are mandatory, minutes are optional, and hours are optional if minutes are provided.'
++    )
++    default_error_messages = {
+         'overflow': _('The number of days must be between {min_days} and {max_days}.')
+     }
+ 
