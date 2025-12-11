@@ -1,0 +1,12 @@
+2025-12-09 13:04:38,351 - INFO - swea-run - Starting run. Find output files at /home/tianpei/IdeaProjects/SWE-agent/trajectories/tianpei/default__gpt-4.1-mini__t-0.00__p-1.00__c-0.50___swe_bench_lite_test
+2025-12-09 13:04:38,354 - INFO - swea-run - Running on instance django__django-10914
+2025-12-09 13:04:38,355 - INFO - swea-run - Running on instance django__django-10924
+2025-12-09 13:11:29,932 - INFO - swea-run - Running on instance django__django-11001
+2025-12-09 13:30:32,164 - INFO - swea-run - Running on instance django__django-11019
+2025-12-09 13:41:17,957 - INFO - swea-run - Running on instance django__django-11039
+2025-12-09 13:43:36,596 - INFO - swea-run - Running on instance django__django-11049
+2025-12-09 13:47:07,439 - INFO - swea-run - Running on instance django__django-11099
+2025-12-09 13:49:27,984 - INFO - swea-run - Running on instance django__django-11133
+2025-12-09 13:52:16,078 - INFO - swea-run - Running on instance django__django-11179
+2025-12-09 13:56:02,433 - INFO - swea-run - Running on instance django__django-11283
+2025-12-09 14:07:18,648 - INFO - swea-run - Running on instance django__django-11422

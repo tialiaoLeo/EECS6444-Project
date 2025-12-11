@@ -1,0 +1,17 @@
+diff --git a/django/conf/global_settings.py b/django/conf/global_settings.py
+index acee9887d2..b875732d70 100644
+--- a/django/conf/global_settings.py
++++ b/django/conf/global_settings.py
+@@ -38,6 +38,12 @@ ALLOWED_HOSTS = []
+ # https://en.wikipedia.org/wiki/List_of_tz_zones_by_name (although not all
+ # systems may support all possibilities). When USE_TZ is True, this is
+ # interpreted as the default user time zone.
++
++
++# Default file upload permissions
++FILE_UPLOAD_PERMISSIONS = 0o644
++FILE_UPLOAD_DIRECTORY_PERMISSIONS = 0o755
++
+ TIME_ZONE = 'America/Chicago'
+ 
+ # If you set this to True, Django will use timezone-aware datetimes.
