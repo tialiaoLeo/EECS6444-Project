@@ -1,0 +1,127 @@
+diff --git a/django/forms/widgets.py b/django/forms/widgets.py
+index 02aa32b207..4af0a39e9c 100644
+--- a/django/forms/widgets.py
++++ b/django/forms/widgets.py
+@@ -125,29 +125,61 @@ class Media:
+         in a certain order. In JavaScript you may not be able to reference a
+         global or in CSS you might want to override a style.
+         """
+-        # Start with a copy of list_1.
+-        combined_list = list(list_1)
+-        last_insert_index = len(list_1)
+-        # Walk list_2 in reverse, inserting each element into combined_list if
+-        # it doesn't already exist.
+-        for path in reversed(list_2):
+-            try:
+-                # Does path already exist in the list?
+-                index = combined_list.index(path)
+-            except ValueError:
+-                # Add path to combined_list since it doesn't exist.
+-                combined_list.insert(last_insert_index, path)
+-            else:
+-                if index > last_insert_index:
+-                    warnings.warn(
+-                        'Detected duplicate Media files in an opposite order:\n'
+-                        '%s\n%s' % (combined_list[last_insert_index], combined_list[index]),
+-                        MediaOrderConflictWarning,
+-                    )
+-                # path already exists in the list. Update last_insert_index so
+-                # that the following elements are inserted in front of this one.
+-                last_insert_index = index
+-        return combined_list
++        from collections import defaultdict, deque
++
++        # Collect all unique elements preserving order
++        seen = set()
++        all_items = []
++        for item in list_1 + list_2:
++            if item not in seen:
++                seen.add(item)
++                all_items.append(item)
++
++        # Build graph of order constraints
++        graph = defaultdict(set)
++        in_degree = defaultdict(int)
++
++        def add_edges(lst):
++            for i in range(len(lst) - 1):
++                a, b = lst[i], lst[i + 1]
++                if b not in graph[a]:
++                    graph[a].add(b)
++                    in_degree[b] += 1
++                    if a not in in_degree:
++                        in_degree[a] = 0
++
++        add_edges(list_1)
++        add_edges(list_2)
++
++        # Topological sort
++        queue = deque([item for item in all_items if in_degree[item] == 0])
++        result = []
++
++        while queue:
++            current = queue.popleft()
++            result.append(current)
++            for neighbor in graph[current]:
++                in_degree[neighbor] -= 1
++                if in_degree[neighbor] == 0:
++                    queue.append(neighbor)
++
++        if len(result) != len(all_items):
++            # Cycle detected, fallback to concatenation without warnings
++            return list_1 + [item for item in list_2 if item not in list_1]
++
++        # Check for conflicts to warn
++        pos_1 = {item: i for i, item in enumerate(list_1)}
++        pos_2 = {item: i for i, item in enumerate(list_2)}
++        for i in range(len(result) - 1):
++            a, b = result[i], result[i + 1]
++            if pos_1.get(a, -1) > pos_1.get(b, -1) and pos_2.get(a, -1) < pos_2.get(b, -1):
++                warnings.warn(
++                    'Detected duplicate Media files in an opposite order:\n'
++                    '%s\n%s' % (a, b),
++                    MediaOrderConflictWarning,
++                )
++
++        return result
+ 
+     def __add__(self, other):
+         combined = Media()
+diff --git a/reproduce_media_order_warning.py b/reproduce_media_order_warning.py
+new file mode 100644
+index 0000000000..5814df21d8
+--- /dev/null
++++ b/reproduce_media_order_warning.py
+@@ -0,0 +1,32 @@
++import django
++from django import forms
++from django.conf import settings
++
++settings.configure(
++    INSTALLED_APPS=[
++        'django.contrib.contenttypes',
++        'django.contrib.auth',
++    ],
++    USE_I18N=True,
++    LANGUAGE_CODE='en-us',
++)
++django.setup()
++
++class ColorPicker(forms.Widget):
++    class Media:
++        js = ['color-picker.js']
++
++class SimpleTextWidget(forms.Widget):
++    class Media:
++        js = ['text-editor.js']
++
++class FancyTextWidget(forms.Widget):
++    class Media:
++        js = ['text-editor.js', 'text-editor-extras.js', 'color-picker.js']
++
++class MyForm(forms.Form):
++    background_color = forms.CharField(widget=ColorPicker())
++    intro = forms.CharField(widget=SimpleTextWidget())
++    body = forms.CharField(widget=FancyTextWidget())
++
++print(MyForm().media)

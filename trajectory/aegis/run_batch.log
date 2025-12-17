@@ -1,0 +1,32 @@
+2025-12-15 13:04:58,805 - INFO - swea-run - Starting run. Find output files at /home/tianpei/IdeaProjects/SWE-agent/trajectories/tianpei/default__gpt-4.1-mini__t-0.00__p-1.00__c-0.50___swe_bench_lite_test
+2025-12-15 13:04:58,807 - INFO - swea-run - Running on instance django__django-10914
+2025-12-15 14:55:17,415 - INFO - swea-run - Starting run. Find output files at /home/tianpei/IdeaProjects/SWE-agent/trajectories/tianpei/default__gpt-4.1-mini__t-0.00__p-1.00__c-0.50___swe_bench_lite_test
+2025-12-15 14:55:17,418 - INFO - swea-run - Running on instance django__django-11001
+2025-12-15 14:55:45,580 - INFO - swea-run - Stopping loop over instances
+2025-12-15 14:59:11,977 - INFO - swea-run - Starting run. Find output files at /home/tianpei/IdeaProjects/SWE-agent/trajectories/tianpei/default__gpt-4.1-mini__t-0.00__p-1.00__c-0.50___swe_bench_lite_test
+2025-12-15 14:59:11,979 - INFO - swea-run - Running on instance django__django-11001
+2025-12-16 21:30:33,048 - INFO - swea-run - Starting run. Find output files at /home/tianpei/IdeaProjects/SWE-agent/trajectories/tianpei/default__gpt-4.1-mini__t-0.00__p-1.00__c-0.50___swe_bench_lite_test
+2025-12-16 21:30:33,051 - INFO - swea-run - Running on instance django__django-11019
+2025-12-16 21:30:56,232 - INFO - swea-run - Stopping loop over instances
+2025-12-16 21:31:09,420 - INFO - swea-run - Starting run. Find output files at /home/tianpei/IdeaProjects/SWE-agent/trajectories/tianpei/default__gpt-4.1-mini__t-0.00__p-1.00__c-0.50___swe_bench_lite_test
+2025-12-16 21:31:09,423 - INFO - swea-run - Running on instance django__django-10924
+2025-12-16 21:35:09,780 - INFO - swea-run - Stopping loop over instances
+2025-12-16 21:35:39,028 - INFO - swea-run - Starting run. Find output files at /home/tianpei/IdeaProjects/SWE-agent/trajectories/tianpei/default__gpt-4.1-mini__t-0.00__p-1.00__c-0.50___swe_bench_lite_test
+2025-12-16 21:35:39,032 - INFO - swea-run - Running on instance django__django-10924
+2025-12-16 22:31:49,894 - INFO - swea-run - Starting run. Find output files at /home/tianpei/IdeaProjects/SWE-agent/trajectories/tianpei/default__gpt-4.1-mini__t-0.00__p-1.00__c-0.50___swe_bench_lite_test
+2025-12-16 22:31:49,898 - INFO - swea-run - Running on instance django__django-11049
+2025-12-16 23:20:52,610 - INFO - swea-run - Starting run. Find output files at /home/tianpei/IdeaProjects/SWE-agent/trajectories/tianpei/default__gpt-4.1-mini__t-0.00__p-1.00__c-0.50___swe_bench_lite_test
+2025-12-16 23:20:52,613 - INFO - swea-run - Running on instance django__django-11039
+2025-12-16 23:20:57,392 - INFO - swea-run - Stopping loop over instances
+2025-12-16 23:21:14,916 - INFO - swea-run - Starting run. Find output files at /home/tianpei/IdeaProjects/SWE-agent/trajectories/tianpei/default__gpt-4.1-mini__t-0.00__p-1.00__c-0.50___swe_bench_lite_test
+2025-12-16 23:21:14,919 - INFO - swea-run - Running on instance django__django-11049
+2025-12-16 23:21:15,228 - INFO - swea-run - ⏭️ Skipping existing trajectory: /home/tianpei/IdeaProjects/SWE-agent/trajectories/tianpei/default__gpt-4.1-mini__t-0.00__p-1.00__c-0.50___swe_bench_lite_test/django__django-11049/django__django-11049.traj
+2025-12-16 23:21:35,528 - INFO - swea-run - Starting run. Find output files at /home/tianpei/IdeaProjects/SWE-agent/trajectories/tianpei/default__gpt-4.1-mini__t-0.00__p-1.00__c-0.50___swe_bench_lite_test
+2025-12-16 23:21:35,533 - INFO - swea-run - Running on instance django__django-11019
+2025-12-16 23:31:00,248 - INFO - swea-run - Stopping loop over instances
+2025-12-16 23:31:08,773 - INFO - swea-run - Starting run. Find output files at /home/tianpei/IdeaProjects/SWE-agent/trajectories/tianpei/default__gpt-4.1-mini__t-0.00__p-1.00__c-0.50___swe_bench_lite_test
+2025-12-16 23:31:08,782 - INFO - swea-run - Running on instance django__django-11019
+2025-12-16 23:46:01,359 - INFO - swea-run - Starting run. Find output files at /home/tianpei/IdeaProjects/SWE-agent/trajectories/tianpei/default__gpt-4.1-mini__t-0.00__p-1.00__c-0.50___swe_bench_lite_test
+2025-12-16 23:46:01,361 - INFO - swea-run - Running on instance django__django-11039
+2025-12-16 23:52:27,897 - INFO - swea-run - Starting run. Find output files at /home/tianpei/IdeaProjects/SWE-agent/trajectories/tianpei/default__gpt-4.1-mini__t-0.00__p-1.00__c-0.50___swe_bench_lite_test
+2025-12-16 23:52:27,900 - INFO - swea-run - Running on instance django__django-11049

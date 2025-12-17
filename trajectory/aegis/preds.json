@@ -1,0 +1,7 @@
+{
+    "django__django-11049": {
+        "model_name_or_path": "default__gpt-4.1-mini__t-0.00__p-1.00__c-0.50___swe_bench_lite_test",
+        "instance_id": "django__django-11049",
+        "model_patch": "diff --git a/django/db/models/fields/__init__.py b/django/db/models/fields/__init__.py\nindex f32ce64629..02826d8db9 100644\n--- a/django/db/models/fields/__init__.py\n+++ b/django/db/models/fields/__init__.py\n@@ -1587,8 +1587,9 @@ class DurationField(Field):\n     empty_strings_allowed = False\n     default_error_messages = {\n         'invalid': _(\"'%(value)s' value has an invalid format. It must be in \"\n-                     \"[DD] [HH:[MM:]]ss[.uuuuuu] format.\")\n+                     \"[DD] [[HH:]MM:]ss[.uuuuuu] format.\")\n     }\n+    help_text = _(\"Duration in the format: [DD] [[HH:]MM:]ss[.uuuuuu]\")\n     description = _(\"Duration\")\n \n     def get_internal_type(self):\n"
+    }
+}

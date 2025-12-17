@@ -1,0 +1,18 @@
+diff --git a/django/db/models/sql/compiler.py b/django/db/models/sql/compiler.py
+index 7649c39262..3de538f1a3 100644
+--- a/django/db/models/sql/compiler.py
++++ b/django/db/models/sql/compiler.py
+@@ -359,6 +359,13 @@ class SQLCompiler:
+                 continue
+             seen.add((without_ordering, params_hash))
+             result.append((resolved, (sql, params, is_ref)))
++
++        # Fix for multiline RawSQL order_by clauses
++        # Convert multiline SQL string to single line before regex matching
++        for i, (expr, (sql, params, is_ref)) in enumerate(result):
++            sql_oneline = ' '.join(sql.split('\n'))
++            without_ordering = self.ordering_parts.search(sql_oneline).group(1)
++            result[i] = (expr, (sql_oneline, params, is_ref))
+         return result
+ 
+     def get_extra_select(self, order_by, select):
